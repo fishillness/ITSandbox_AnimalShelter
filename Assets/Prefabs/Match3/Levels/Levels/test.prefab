@@ -1323,7 +1323,7 @@ MonoBehaviour:
   taskInfos:
   - taskType: 1
     sprite: {fileID: 21300000, guid: 8aeaa7df6044ea04682a14cdf1c48a09, type: 3}
-    count: 15
+    count: 1
     type: 1
     colorType: 0
   - taskType: 1
@@ -2984,6 +2984,8 @@ PrefabInstance:
     - {fileID: 7935981753497729166, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}
     - {fileID: 4606494948608034322, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}
     - {fileID: 7250379551641102335, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}
+    - {fileID: 5116974017296854749, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}
+    - {fileID: 3620275117946983904, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88c6fb1cfcdbf0b4d8ed08e5bcd8f6bd, type: 3}

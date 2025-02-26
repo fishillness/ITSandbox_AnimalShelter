@@ -43,7 +43,7 @@ public class UIMatch3LevelPanel : MonoBehaviour,
     public void AddTaskInfo(TaskInfo taskInfo)
     {
         UITaskInfo uiTaskInfo = Instantiate(taskInfoPrefab, taskGroup.transform);
-        uiTaskInfo.SetProperties(taskInfo.Sprite, taskInfo.Count, taskInfo);
+        uiTaskInfo.SetProperties(taskInfo.Sprite, taskInfo.Count, taskInfo, UITaskInfoType.Numberal);
         uiTaskInfos.Add(uiTaskInfo);
     }
 
@@ -54,6 +54,7 @@ public class UIMatch3LevelPanel : MonoBehaviour,
             if (uiTaskInfo.IsThisUITaskInfo(taskInfo))
             {
                 uiTaskInfo.UpdateNumberText(taskInfo.CurrentCount);
+                break;
             }
         }
     }

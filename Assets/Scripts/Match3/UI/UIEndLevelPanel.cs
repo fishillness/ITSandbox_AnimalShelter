@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,10 +25,16 @@ public class UIEndLevelPanel : MonoBehaviour,
     [SerializeField] private AudioClip winSound;
     [SerializeField] private AudioClip loseSound;
 
+    [Header("CompleteTaskInfo")]
+    [SerializeField] private GameObject taskGroup;
+    [SerializeField] private UITaskInfo taskInfoPrefab;
+
     private Match3Level level;
     private Match3LevelManager levelManager;
     private ValueManager valueManager;
     private SoundsPlayer soundPlayer;
+
+    private List<UITaskInfo> uiTaskInfos;
 
     #region Constructs
     public void Construct(Match3Level level) => this.level = level;
@@ -112,5 +119,29 @@ public class UIEndLevelPanel : MonoBehaviour,
     private void OpenCity()
     {
         SceneController.LoadSceneCity();
+    }
+
+    public void InitUITaskInfo()
+    {
+        uiTaskInfos = new List<UITaskInfo>();
+    }
+
+    public void AddUITaskInfo(TaskInfo taskInfo)
+    {
+        UITaskInfo uiTaskInfo = Instantiate(taskInfoPrefab, taskGroup.transform);
+        uiTaskInfo.SetProperties(taskInfo.Sprite, taskInfo.Count, taskInfo, UITaskInfoType.Boolean);
+        uiTaskInfos.Add(uiTaskInfo);
+    }
+
+    public void UpdateUITaskInfo(TaskInfo taskInfo, bool complete)
+    {
+        foreach (var uiTaskInfo in uiTaskInfos)
+        {
+            if (uiTaskInfo.IsThisUITaskInfo(taskInfo))
+            {
+                uiTaskInfo.UpdateCompleteInfo(complete);
+                break;
+            }
+        }
     }
 }
