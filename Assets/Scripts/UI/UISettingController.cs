@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI; 
 
@@ -62,11 +61,13 @@ public class UISettingController : MonoBehaviour,
 
     private void OpenWarningPanel()
     {
+        settingPanel.SetActive(false);
         warningPanel.SetActive(true);
     }
 
     private void CloseWarningPanel()
     {
+        settingPanel.SetActive(true);
         warningPanel.SetActive(false);
     }
 }
