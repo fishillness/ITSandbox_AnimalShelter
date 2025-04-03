@@ -4,18 +4,23 @@ using UnityEngine.Tilemaps;
 public class WorkingWithGrid : MonoBehaviour
 {
     [SerializeField] private Grid grid;
-    [SerializeField] private Tilemap field;
-    [SerializeField] private Tilemap piecesSpawnersTilemap;
     [SerializeField] private Bound[] boundsElement;
+    [SerializeField] private DictionaryTilemaps tilemapsDict;
 
     private BoundsInt bounds;
     protected int xDim;
     protected int yDim;
 
-    protected virtual void SetBounds()
+    protected void InitTilemapsGrid()
     {
-        Vector3Int boundUp = field.WorldToCell(boundsElement[0].transform.position);
-        Vector3Int boundBottom = field.WorldToCell(boundsElement[1].transform.position);
+        tilemapsDict.InitDictionaty();
+    }
+
+    protected void SetBounds()
+    {
+        Tilemap tilemap = tilemapsDict.GetPrefabByEnum(TilemapsType.Field).GetComponent<Tilemap>();
+        Vector3Int boundUp = tilemap.WorldToCell(boundsElement[0].transform.position);
+        Vector3Int boundBottom = tilemap.WorldToCell(boundsElement[1].transform.position);
 
         bounds.xMin = boundUp.x;
         bounds.xMax = boundBottom.x;
@@ -24,6 +29,7 @@ public class WorkingWithGrid : MonoBehaviour
         xDim = bounds.xMax - bounds.xMin + 1;
         yDim = bounds.yMax - bounds.yMin + 1;
     }
+
     protected int GetXInGridPos(int x)
     {
         return (x + bounds.xMin);
@@ -33,31 +39,19 @@ public class WorkingWithGrid : MonoBehaviour
     {
         return (bounds.yMax - y);
     }
-    public Vector2 GetPiecePositionOnWorldInField(int x, int y)
+    public Vector2 GetPiecePositionOnWorld(int x, int y, TilemapsType tilemapsType)
     {
-        Vector3 pos = field.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
+        Tilemap tilemap = tilemapsDict.GetPrefabByEnum(tilemapsType).GetComponent<Tilemap>();
+        Vector3 pos = tilemap.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
         pos.x += grid.cellSize.x / 2;
         pos.y += grid.cellSize.y / 2;
 
         return pos;
     }
 
-    public Vector2 GetPiecePositionOnWorldInSpawners(int x, int y)
+    public bool IsTileNotEmpty(int x, int y, TilemapsType tilemapsType)
     {
-        Vector3 pos = piecesSpawnersTilemap.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
-        pos.x += grid.cellSize.x / 2;
-        pos.y += grid.cellSize.y / 2;
-
-        return pos;
-    }
-
-    public bool IsTileInFieldNotEmpty(int x, int y)
-    {
-        return field.GetTile(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0)) != null;
-    }
-
-    public bool IsTileInSpawnersNotEmpty(int x, int y)
-    {
-        return piecesSpawnersTilemap.GetTile(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0)) != null;
+        Tilemap tilemap = tilemapsDict.GetPrefabByEnum(tilemapsType).GetComponent<Tilemap>();
+        return tilemap.GetTile(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0)) != null;
     }
 }

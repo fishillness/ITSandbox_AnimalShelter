@@ -18,6 +18,7 @@ public class PiecesSpawnerController : WorkingWithGrid,
     {
         piecesSpawners = new List<PiecesSpawner>();
 
+        InitTilemapsGrid();
         SetBounds();
         CreateSpawners();
     }
@@ -28,9 +29,9 @@ public class PiecesSpawnerController : WorkingWithGrid,
         {
             for (int y = 0; y < yDim; y++)
             {
-                if (IsTileInSpawnersNotEmpty(x, y))
+                if (IsTileNotEmpty(x, y, TilemapsType.Spawners))
                 {
-                    PiecesSpawner spawner = Instantiate(spawnerPrefab, GetPiecePositionOnWorldInSpawners(x ,y), Quaternion.identity);
+                    PiecesSpawner spawner = Instantiate(spawnerPrefab, GetPiecePositionOnWorld(x ,y, TilemapsType.Spawners), Quaternion.identity);
                     spawner.transform.parent = transform;
                     spawner.name = $"PiecesSpawners [{x}, {y}]";
                     spawner.Init(x, y);

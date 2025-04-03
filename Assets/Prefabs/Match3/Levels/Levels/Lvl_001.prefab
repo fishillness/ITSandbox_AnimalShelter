@@ -481,11 +481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 2608403903035857359}
-  field: {fileID: 8365228843022715812}
-  piecesSpawnersTilemap: {fileID: 0}
   boundsElement:
   - {fileID: 3597042599056598517}
   - {fileID: 71272496138330508}
+  tilemapsDict: {fileID: 7301826846277077580}
   OnMove:
     m_PersistentCalls:
       m_Calls: []
@@ -1735,11 +1734,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 2608403903035857359}
-  field: {fileID: 8365228843022715812}
-  piecesSpawnersTilemap: {fileID: 4902646527489591965}
   boundsElement:
   - {fileID: 3597042599056598517}
   - {fileID: 71272496138330508}
+  tilemapsDict: {fileID: 7301826846277077580}
   spawnerPrefab: {fileID: 8406461318224951459, guid: e2ce7c92ac0258b459466a4ac03b04c5, type: 3}
 --- !u!1 &5093318786822420349
 GameObject:
@@ -1772,6 +1770,7 @@ Transform:
   m_Children:
   - {fileID: 3641692944506292535}
   - {fileID: 8039034903741358042}
+  - {fileID: 4484428236298495241}
   m_Father: {fileID: 2396780315942113279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5521059536486998225
@@ -1920,6 +1919,55 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &6895833843222559870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4484428236298495241}
+  - component: {fileID: 7301826846277077580}
+  m_Layer: 0
+  m_Name: DictionaryTilemaps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4484428236298495241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6895833843222559870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8674931062477138524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7301826846277077580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6895833843222559870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3070df88af9d09f41b7e6deb7481a2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enumToPrefabs:
+  - Enum: 0
+    Prefab: {fileID: 4289048588325703857}
+  - Enum: 1
+    Prefab: {fileID: 3714077557391329}
 --- !u!1 &7725911580963594737
 GameObject:
   m_ObjectHideFlags: 0

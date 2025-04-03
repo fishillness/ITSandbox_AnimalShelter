@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DictionaryBySprite<T> :MonoBehaviour
+public class DictionaryBySprite<T> : MonoBehaviour
 {
     [Serializable, SerializeField]
     private struct TypeSprite

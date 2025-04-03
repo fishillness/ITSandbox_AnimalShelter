@@ -68,6 +68,7 @@ public class FieldController : WorkingWithGrid,
         }
         pieceCounter.InitDictionery(piecePrefabs);
 
+        InitTilemapsGrid();
         SetBounds();
 
         matrixController.InitMatrix(xDim, yDim);
@@ -209,16 +210,7 @@ public class FieldController : WorkingWithGrid,
 
         return isPieceDrop;
     }
-    /*
-    public Vector2 GetPiecePositionOnWorld(int x, int y)
-    {
-        Vector3 pos = field.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
-        pos.x += grid.cellSize.x / 2;
-        pos.y += grid.cellSize.y / 2;
 
-        return pos;
-    }
-    */
     private MatchingPieces FindMatch(Piece piece)
     {
         MatchingPieces matching = new MatchingPieces();
@@ -404,8 +396,8 @@ public class FieldController : WorkingWithGrid,
         Vector2Int piece1XY = new Vector2Int(piece1.X, piece1.Y);
         Vector2Int piece2XY = new Vector2Int(piece2.X, piece2.Y);
 
-        piece1.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorldInField(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
-        piece2.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorldInField(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
+        piece1.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorld(piece2XY.x, piece2XY.y, TilemapsType.Field), movingTime);//droppingTime);
+        piece2.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorld(piece1XY.x, piece1XY.y, TilemapsType.Field), movingTime);//droppingTime);
 
         MatchingPieces matchPiece1 = new MatchingPieces();
         matchPiece1 = FindMatch(matrixController.Pieces[piece1.X, piece1.Y]);
@@ -455,8 +447,8 @@ public class FieldController : WorkingWithGrid,
         {
             matrixController.SwapPiecesOnlyInMatrix(piece1, piece2);
 
-            piece1.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorldInField(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
-            piece2.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorldInField(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
+            piece1.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorld(piece1XY.x, piece1XY.y, TilemapsType.Field), movingTime);//droppingTime);
+            piece2.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorld(piece2XY.x, piece2XY.y, TilemapsType.Field), movingTime);//droppingTime);
 
             return false;
         }
