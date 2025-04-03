@@ -69,7 +69,7 @@ public class PieceMatrixController : MonoBehaviour,
         {
             for (int y = 0; y < yDim; y++)
             {
-                if (field.IsTileNotEmpty(x,y))
+                if (field.IsTileInFieldNotEmpty(x,y))
                 {
                     SpawnNewPiece(x, y, PieceType.Empty);
                 }
@@ -180,7 +180,7 @@ public class PieceMatrixController : MonoBehaviour,
         }
 
         Piece newPiece = Instantiate(field.PiecePrefabDict[type],
-            field.GetPiecePositionOnWorld(x, y), Quaternion.identity);
+            field.GetPiecePositionOnWorldInField(x, y), Quaternion.identity);
         newPiece.transform.parent = transform;
         newPiece.Init(x, y, type);
 
@@ -208,7 +208,7 @@ public class PieceMatrixController : MonoBehaviour,
         }
 
         Piece newPiece = Instantiate(field.PiecePrefabDict[type],
-            field.GetPiecePositionOnWorld(x, y), Quaternion.identity);
+            field.GetPiecePositionOnWorldInField(x, y), Quaternion.identity);
         newPiece.transform.parent = transform;
         newPiece.Init(x, y, type);
 
@@ -310,11 +310,11 @@ public class PieceMatrixController : MonoBehaviour,
 
         if (immediately)
         {
-            pieces[xNonEmpty, yNonEmpty].Movable.Move(xEmpty, yEmpty, field.GetPiecePositionOnWorld(xEmpty, yEmpty), 0);
+            pieces[xNonEmpty, yNonEmpty].Movable.Move(xEmpty, yEmpty, field.GetPiecePositionOnWorldInField(xEmpty, yEmpty), 0);
         }
         else
         {
-            pieces[xNonEmpty, yNonEmpty].Movable.Move(xEmpty, yEmpty, field.GetPiecePositionOnWorld(xEmpty, yEmpty), field.MovingTime);//field.DroppingTime);
+            pieces[xNonEmpty, yNonEmpty].Movable.Move(xEmpty, yEmpty, field.GetPiecePositionOnWorldInField(xEmpty, yEmpty), field.MovingTime);//field.DroppingTime);
         }
         
         

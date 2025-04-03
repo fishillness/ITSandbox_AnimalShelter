@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Tilemaps;
 
-public class FieldController : MonoBehaviour,
+public class FieldController : WorkingWithGrid,
     IDependency<PiecesSpawnerController>, IDependency<PieceCounter>,
     IDependency<Match3Level>, IDependency<PieceMatrixController>
 {
@@ -14,10 +13,7 @@ public class FieldController : MonoBehaviour,
     [HideInInspector]
     public UnityEvent OnDropEnd;
 
-    [SerializeField] private Grid grid;
-    [SerializeField] private Tilemap field;
     [SerializeField] private PiecePrefab[] piecePrefabs;
-    [SerializeField] private Bound[] boundsElement;
     [SerializeField] private float droppingTime;
     [SerializeField] private float movingTime;
 
@@ -47,9 +43,6 @@ public class FieldController : MonoBehaviour,
     }
 
     private Dictionary<PieceType, Piece> piecePrefabDict;
-    private BoundsInt bounds;
-    private int xDim;
-    private int yDim;
     private bool isLevelEnd = true;
     private bool areMovesAllowed = true;
     private bool continueDropping;
@@ -97,34 +90,6 @@ public class FieldController : MonoBehaviour,
     {
         isLevelEnd = false;
         areMovesAllowed = false;
-    }
-
-    private void SetBounds()
-    {
-        Vector3Int boundUp = field.WorldToCell(boundsElement[0].transform.position);
-        Vector3Int boundBottom = field.WorldToCell(boundsElement[1].transform.position);
-
-        bounds.xMin = boundUp.x;
-        bounds.xMax = boundBottom.x;
-        bounds.yMin = boundBottom.y;
-        bounds.yMax = boundUp.y;
-        xDim = bounds.xMax - bounds.xMin + 1;
-        yDim = bounds.yMax - bounds.yMin + 1;
-    }
-
-    public bool IsTileNotEmpty(int x, int y)
-    {
-        return field.GetTile(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0)) != null;
-    }
-    
-    private int GetXInGridPos(int x)
-    {
-        return (x + bounds.xMin);
-    }
-
-    private int GetYInGridPos(int y)
-    {
-        return (bounds.yMax - y);
     }
 
     public void StartDropPieces(float time)
@@ -244,7 +209,7 @@ public class FieldController : MonoBehaviour,
 
         return isPieceDrop;
     }
-
+    /*
     public Vector2 GetPiecePositionOnWorld(int x, int y)
     {
         Vector3 pos = field.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
@@ -253,7 +218,7 @@ public class FieldController : MonoBehaviour,
 
         return pos;
     }
-
+    */
     private MatchingPieces FindMatch(Piece piece)
     {
         MatchingPieces matching = new MatchingPieces();
@@ -439,8 +404,8 @@ public class FieldController : MonoBehaviour,
         Vector2Int piece1XY = new Vector2Int(piece1.X, piece1.Y);
         Vector2Int piece2XY = new Vector2Int(piece2.X, piece2.Y);
 
-        piece1.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorld(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
-        piece2.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorld(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
+        piece1.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorldInField(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
+        piece2.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorldInField(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
 
         MatchingPieces matchPiece1 = new MatchingPieces();
         matchPiece1 = FindMatch(matrixController.Pieces[piece1.X, piece1.Y]);
@@ -490,8 +455,8 @@ public class FieldController : MonoBehaviour,
         {
             matrixController.SwapPiecesOnlyInMatrix(piece1, piece2);
 
-            piece1.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorld(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
-            piece2.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorld(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
+            piece1.Movable.Move(piece1XY.x, piece1XY.y, GetPiecePositionOnWorldInField(piece1XY.x, piece1XY.y), movingTime);//droppingTime);
+            piece2.Movable.Move(piece2XY.x, piece2XY.y, GetPiecePositionOnWorldInField(piece2XY.x, piece2XY.y), movingTime);//droppingTime);
 
             return false;
         }

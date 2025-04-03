@@ -1,13 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class PiecesSpawnerController : MonoBehaviour,
+public class PiecesSpawnerController : WorkingWithGrid,
     IDependency<PieceMatrixController>
 {
-    [SerializeField] private Grid grid;
-    [SerializeField] private Tilemap piecesSpawnersTilemap;
-    [SerializeField] private Bound[] boundsElement;
     [SerializeField] private PiecesSpawner spawnerPrefab;
 
     private PieceMatrixController matrixController;
@@ -17,10 +13,6 @@ public class PiecesSpawnerController : MonoBehaviour,
     #endregion
 
     private List<PiecesSpawner> piecesSpawners;
-    private BoundsInt bounds;
-    private int xDim;
-    private int yDim;
-    //private Coroutine coroutine;
 
     public void InitSpawners()
     {
@@ -30,31 +22,15 @@ public class PiecesSpawnerController : MonoBehaviour,
         CreateSpawners();
     }
 
-    private void SetBounds()
-    {
-        Vector3Int boundUp = piecesSpawnersTilemap.WorldToCell(boundsElement[0].transform.position);
-        Vector3Int boundBottom = piecesSpawnersTilemap.WorldToCell(boundsElement[1].transform.position);
-
-        bounds.xMin = boundUp.x;
-        bounds.xMax = boundBottom.x;
-        bounds.yMin = boundBottom.y;
-        bounds.yMax = boundUp.y;
-        xDim = bounds.xMax - bounds.xMin + 1;
-        yDim = bounds.yMax - bounds.yMin + 1;
-    }
-
     private void CreateSpawners()
     {
         for (int x = 0; x < xDim; x++)
         {
             for (int y = 0; y < yDim; y++)
             {
-                if (piecesSpawnersTilemap.GetTile(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0)) != null)
+                if (IsTileInSpawnersNotEmpty(x, y))
                 {
-                    Vector3 pos = piecesSpawnersTilemap.CellToWorld(new Vector3Int(GetXInGridPos(x), GetYInGridPos(y), 0));
-                    pos.x += grid.cellSize.x / 2;
-                    pos.y += grid.cellSize.y / 2;
-                    PiecesSpawner spawner = Instantiate(spawnerPrefab, pos, Quaternion.identity);
+                    PiecesSpawner spawner = Instantiate(spawnerPrefab, GetPiecePositionOnWorldInSpawners(x ,y), Quaternion.identity);
                     spawner.transform.parent = transform;
                     spawner.name = $"PiecesSpawners [{x}, {y}]";
                     spawner.Init(x, y);
@@ -62,16 +38,6 @@ public class PiecesSpawnerController : MonoBehaviour,
                 }
             }
         }
-    }
-
-    private int GetXInGridPos(int x)
-    {
-        return (x + bounds.xMin);
-    }
-
-    private int GetYInGridPos(int y)
-    {
-        return (bounds.yMax - y);
     }
 
     public bool CheckNeedOfSpawnPiece()
@@ -91,19 +57,4 @@ public class PiecesSpawnerController : MonoBehaviour,
 
         return somethingSpawned;
     }
-    /*
-    public void CheckNeedOfSpawnPieceAfterTime(float time)
-    {
-        if (coroutine != null)
-            StopCoroutine(coroutine);
-
-        coroutine = StartCoroutine(WaitingTimeBeforeChecking(time));
-    }
-
-    private IEnumerator WaitingTimeBeforeChecking(float time)
-    {
-        yield return new WaitForSeconds(time);
-        CheckNeedOfSpawnPiece();
-    }
-    */
 }

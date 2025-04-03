@@ -480,14 +480,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ea447494cd71543adb736443199f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 2608403903035857359}
+  field: {fileID: 8365228843022715812}
+  piecesSpawnersTilemap: {fileID: 0}
+  boundsElement:
+  - {fileID: 3597042599056598517}
+  - {fileID: 71272496138330508}
   OnMove:
     m_PersistentCalls:
       m_Calls: []
   OnDropEnd:
     m_PersistentCalls:
       m_Calls: []
-  grid: {fileID: 2608403903035857359}
-  field: {fileID: 8365228843022715812}
   piecePrefabs:
   - type: 0
     prefab: {fileID: 4055000449179918830, guid: be11c26b6009c154ca36911cbf447f9b, type: 3}
@@ -501,9 +505,6 @@ MonoBehaviour:
     prefab: {fileID: 5484179368176546677, guid: 6782be4fecddbf747881f65aa02c4b9e, type: 3}
   - type: 5
     prefab: {fileID: 5634014191736171235, guid: 9330891af2ef16346befacca008d8fe3, type: 3}
-  boundsElement:
-  - {fileID: 3597042599056598517}
-  - {fileID: 71272496138330508}
   droppingTime: 0.06
   movingTime: 0.15
 --- !u!1 &3331796232436578083
@@ -1734,6 +1735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 2608403903035857359}
+  field: {fileID: 8365228843022715812}
   piecesSpawnersTilemap: {fileID: 4902646527489591965}
   boundsElement:
   - {fileID: 3597042599056598517}
