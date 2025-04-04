@@ -16,7 +16,7 @@ public class WorkingWithGrid : MonoBehaviour,
     public void Construct(TilemapsDictionary tilemapsDict) => this.tilemapsDict = tilemapsDict;
     #endregion
 
-    protected void InitTilemapsGrid()
+    protected void InitTilemapsDictionary()
     {
         tilemapsDict.InitDictionary();
     }

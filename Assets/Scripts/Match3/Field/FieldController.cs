@@ -53,10 +53,8 @@ public class FieldController : WorkingWithGrid,
     {
         piecesDict.InitDictionary();
         pieceCounter.InitDictionary(piecesDict);
-
-        InitTilemapsGrid();
+        InitTilemapsDictionary();
         SetBounds();
-
         matrixController.InitMatrix(xDim, yDim);
     }
 
@@ -65,6 +63,7 @@ public class FieldController : WorkingWithGrid,
         spawnerController.InitSpawners();
         spawnerController.CheckNeedOfSpawnPiece();
         StartDropPieces(droppingTime);
+
         level.OnStopMoves.AddListener(OnLevelEnd);
     }
 

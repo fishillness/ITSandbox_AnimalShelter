@@ -18,7 +18,7 @@ public class PiecesSpawnerController : WorkingWithGrid,
     {
         piecesSpawners = new List<PiecesSpawner>();
 
-        InitTilemapsGrid();
+        InitTilemapsDictionary();
         SetBounds();
         CreateSpawners();
     }

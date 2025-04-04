@@ -3,6 +3,14 @@ using UnityEngine;
 public class Match3SceneDependencies : Dependency
 {
     [SerializeField] private PieceCounter pieceCounter;
+    [SerializeField] private UIMatch3LevelPanel levelPanel;
+    [SerializeField] private TaskInfoCounter taskInfoCounter;
+    [SerializeField] private PieceMatrixController matrixController;
+    [SerializeField] private PiecesSpawnerController spawnerController;
+    [SerializeField] private Match3Level level;
+    [SerializeField] private FieldController fieldController;
+    [SerializeField] private PieceControl pieceControl;
+    [SerializeField] private UIEndLevelPanel endLevelPanel;
 
     [SerializeField] private PieceColorDictionary pieceColorDictionary;
     [SerializeField] private BoosterDictionary boosterDictionary;
@@ -11,16 +19,7 @@ public class Match3SceneDependencies : Dependency
 
     [SerializeField] private SpecifierRequiredPiecesOfType specifierRequiredPiecesOfType;
     [SerializeField] private SpecifierRequiredBooster specifierRequiredBooster;
-    [SerializeField] private UIMatch3LevelPanel levelPanel;
-    [SerializeField] private TaskInfoCounter taskInfoCounter;
 
-    [SerializeField] private PieceMatrixController matrixController;
-    [SerializeField] private PiecesSpawnerController spawnerController;
-    [SerializeField] private Match3Level level;
-
-    [SerializeField] private FieldController fieldController;
-    [SerializeField] private PieceControl pieceControl;
-    [SerializeField] private UIEndLevelPanel endLevelPanel;
 
     private void Awake()
     {
@@ -30,6 +29,15 @@ public class Match3SceneDependencies : Dependency
     protected override void BindAll(MonoBehaviour monoBehaviourInScene)
     {
         Bind<PieceCounter>(pieceCounter, monoBehaviourInScene);
+        Bind<UIMatch3LevelPanel>(levelPanel, monoBehaviourInScene);
+        Bind<TaskInfoCounter>(taskInfoCounter, monoBehaviourInScene);
+        Bind<PieceMatrixController>(matrixController, monoBehaviourInScene);
+        Bind<PiecesSpawnerController>(spawnerController, monoBehaviourInScene);
+        Bind<Match3Level>(level, monoBehaviourInScene);
+        Bind<FieldController>(fieldController, monoBehaviourInScene);
+        Bind<PieceControl>(pieceControl, monoBehaviourInScene);
+        Bind<UIEndLevelPanel>(endLevelPanel, monoBehaviourInScene);
+
 
         Bind<PieceColorDictionary>(pieceColorDictionary, monoBehaviourInScene);
         Bind<BoosterDictionary>(boosterDictionary, monoBehaviourInScene);
@@ -38,15 +46,5 @@ public class Match3SceneDependencies : Dependency
 
         Bind<SpecifierRequiredPiecesOfType>(specifierRequiredPiecesOfType, monoBehaviourInScene);
         Bind<SpecifierRequiredBooster>(specifierRequiredBooster, monoBehaviourInScene);
-        Bind<UIMatch3LevelPanel>(levelPanel, monoBehaviourInScene);
-        Bind<TaskInfoCounter>(taskInfoCounter, monoBehaviourInScene);
-
-        Bind<PieceMatrixController>(matrixController, monoBehaviourInScene);
-        Bind<PiecesSpawnerController>(spawnerController, monoBehaviourInScene);
-        Bind<Match3Level>(level, monoBehaviourInScene);
-
-        Bind<FieldController>(fieldController, monoBehaviourInScene);
-        Bind<PieceControl>(pieceControl, monoBehaviourInScene);
-        Bind<UIEndLevelPanel>(endLevelPanel, monoBehaviourInScene);
     }
 }
