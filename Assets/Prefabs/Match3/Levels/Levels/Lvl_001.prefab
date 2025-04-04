@@ -491,19 +491,7 @@ MonoBehaviour:
   OnDropEnd:
     m_PersistentCalls:
       m_Calls: []
-  piecePrefabs:
-  - type: 0
-    prefab: {fileID: 4055000449179918830, guid: be11c26b6009c154ca36911cbf447f9b, type: 3}
-  - type: 1
-    prefab: {fileID: 7856225921301238673, guid: 7366d4ae56d4a084ba4dcb9326c2b982, type: 3}
-  - type: 2
-    prefab: {fileID: 4417132935875036991, guid: 53df768b26ae6264c8e6ad16c9c86ff2, type: 3}
-  - type: 3
-    prefab: {fileID: 8907215690913408729, guid: 6df9f76655be35f44a4433f723d39959, type: 3}
-  - type: 4
-    prefab: {fileID: 5484179368176546677, guid: 6782be4fecddbf747881f65aa02c4b9e, type: 3}
-  - type: 5
-    prefab: {fileID: 5634014191736171235, guid: 9330891af2ef16346befacca008d8fe3, type: 3}
+  piecesDict: {fileID: 1094058045525188592}
   droppingTime: 0.06
   movingTime: 0.15
 --- !u!1 &3331796232436578083
@@ -1739,6 +1727,63 @@ MonoBehaviour:
   - {fileID: 71272496138330508}
   tilemapsDict: {fileID: 7301826846277077580}
   spawnerPrefab: {fileID: 8406461318224951459, guid: e2ce7c92ac0258b459466a4ac03b04c5, type: 3}
+--- !u!1 &5021204313807366299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3129354969372128720}
+  - component: {fileID: 1094058045525188592}
+  m_Layer: 0
+  m_Name: PiecesDictionary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3129354969372128720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021204313807366299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8674931062477138524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1094058045525188592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021204313807366299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73f73fcc6a2eb546b8bb5cfadaef2b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enumToPrefabs:
+  - Enum: 0
+    Prefab: {fileID: 4055000449179918830, guid: be11c26b6009c154ca36911cbf447f9b, type: 3}
+  - Enum: 1
+    Prefab: {fileID: 7856225921301238673, guid: 7366d4ae56d4a084ba4dcb9326c2b982, type: 3}
+  - Enum: 2
+    Prefab: {fileID: 4417132935875036991, guid: 53df768b26ae6264c8e6ad16c9c86ff2, type: 3}
+  - Enum: 3
+    Prefab: {fileID: 8907215690913408729, guid: 6df9f76655be35f44a4433f723d39959, type: 3}
+  - Enum: 4
+    Prefab: {fileID: 5484179368176546677, guid: 6782be4fecddbf747881f65aa02c4b9e, type: 3}
+  - Enum: 5
+    Prefab: {fileID: 5634014191736171235, guid: 9330891af2ef16346befacca008d8fe3, type: 3}
 --- !u!1 &5093318786822420349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1816,7 @@ Transform:
   - {fileID: 3641692944506292535}
   - {fileID: 8039034903741358042}
   - {fileID: 4484428236298495241}
+  - {fileID: 3129354969372128720}
   m_Father: {fileID: 2396780315942113279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5521059536486998225
@@ -1930,7 +1976,7 @@ GameObject:
   - component: {fileID: 4484428236298495241}
   - component: {fileID: 7301826846277077580}
   m_Layer: 0
-  m_Name: DictionaryTilemaps
+  m_Name: TilemapsDictionary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

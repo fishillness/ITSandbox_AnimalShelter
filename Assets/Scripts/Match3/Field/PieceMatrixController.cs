@@ -179,7 +179,7 @@ public class PieceMatrixController : MonoBehaviour,
                 return null;
         }
 
-        Piece newPiece = Instantiate(field.PiecePrefabDict[type],
+        Piece newPiece = Instantiate(field.PiecesDict.GetPrefabByEnum(type),
             field.GetPiecePositionOnWorld(x, y, TilemapsType.Field), Quaternion.identity);
         newPiece.transform.parent = transform;
         newPiece.Init(x, y, type);
@@ -207,7 +207,7 @@ public class PieceMatrixController : MonoBehaviour,
                 return null;
         }
 
-        Piece newPiece = Instantiate(field.PiecePrefabDict[type],
+        Piece newPiece = Instantiate(field.PiecesDict.GetPrefabByEnum(type), 
             field.GetPiecePositionOnWorld(x, y, TilemapsType.Field), Quaternion.identity);
         newPiece.transform.parent = transform;
         newPiece.Init(x, y, type);

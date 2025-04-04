@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +12,7 @@ public class FieldController : WorkingWithGrid,
     [HideInInspector]
     public UnityEvent OnDropEnd;
 
-    [SerializeField] private PiecePrefab[] piecePrefabs;
+    [SerializeField] private PiecesDictionary piecesDict;
     [SerializeField] private float droppingTime;
     [SerializeField] private float movingTime;
 
@@ -29,44 +28,29 @@ public class FieldController : WorkingWithGrid,
     public void Construct(PieceMatrixController matrixController) => this.matrixController = matrixController;
     #endregion
 
-    [Serializable, SerializeField]
-    public struct PiecePrefab
-    {
-        public PieceType type;
-        public Piece prefab;
-    }
-
     public struct MatchingPieces
     {
         public List<Piece> matchPieces;
         public BoosterType boosterType;
     }
-
-    private Dictionary<PieceType, Piece> piecePrefabDict;
+    
     private bool isLevelEnd = true;
     private bool areMovesAllowed = true;
     private bool continueDropping;
     private bool isStartFillingField = true;
     
     public bool IsDroppingContinue => continueDropping;
-    public Dictionary<PieceType, Piece>  PiecePrefabDict => piecePrefabDict;
     public float DroppingTime => droppingTime;  
     public float MovingTime => movingTime;
     public bool IsLevelEnd => isLevelEnd;
     public bool AreMovesAllowed => areMovesAllowed;
     public bool IsStartFillingField => isStartFillingField;
+    public PiecesDictionary PiecesDict => piecesDict;
 
     private void Awake()
     {
-        piecePrefabDict = new Dictionary<PieceType, Piece>();
-        for (int i = 0; i < piecePrefabs.Length; i++)
-        {
-            if (!piecePrefabDict.ContainsKey(piecePrefabs[i].type))
-            {
-                piecePrefabDict.Add(piecePrefabs[i].type, piecePrefabs[i].prefab);
-            }
-        }
-        pieceCounter.InitDictionery(piecePrefabs);
+        piecesDict.InitDictionary();
+        pieceCounter.InitDictionary(piecesDict);
 
         InitTilemapsGrid();
         SetBounds();

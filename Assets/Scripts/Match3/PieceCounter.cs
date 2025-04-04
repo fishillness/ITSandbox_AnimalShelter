@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static FieldController;
 
 public class PieceCounter : MonoBehaviour
 {
@@ -12,15 +11,15 @@ public class PieceCounter : MonoBehaviour
 
     private Dictionary<PieceType, int> pieceCount;
 
-    public void InitDictionery(PiecePrefab[] piecePrefabs)
+    public void InitDictionary(PiecesDictionary piecesDict)
     {
         pieceCount = new Dictionary<PieceType, int>();
 
-        foreach (var piece in piecePrefabs)
+        foreach (var piece in piecesDict.Dictionary)
         {
-            if (!pieceCount.ContainsKey(piece.type))
+            if (!pieceCount.ContainsKey(piece.Key))
             {
-                pieceCount.Add(piece.type, 0);
+                pieceCount.Add(piece.Key, 0);
             }
         }
     }

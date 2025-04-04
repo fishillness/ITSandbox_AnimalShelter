@@ -5,7 +5,7 @@ public class WorkingWithGrid : MonoBehaviour
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Bound[] boundsElement;
-    [SerializeField] private DictionaryTilemaps tilemapsDict;
+    [SerializeField] private TilemapsDictionary tilemapsDict;
 
     private BoundsInt bounds;
     protected int xDim;
@@ -13,7 +13,7 @@ public class WorkingWithGrid : MonoBehaviour
 
     protected void InitTilemapsGrid()
     {
-        tilemapsDict.InitDictionaty();
+        tilemapsDict.InitDictionary();
     }
 
     protected void SetBounds()

@@ -15,7 +15,9 @@ public abstract class DictionaryEnumToPrefabs<T1, T2> : MonoBehaviour
 
     protected Dictionary<T1, T2> enumToPrefabsDict;
 
-    public void InitDictionaty()
+    public Dictionary<T1, T2> Dictionary => enumToPrefabsDict;
+
+    public void InitDictionary()
     {
         if (enumToPrefabsDict != null) return;
         
