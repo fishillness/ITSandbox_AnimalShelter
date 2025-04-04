@@ -58,11 +58,11 @@ public class PieceMatrixController : MonoBehaviour,
 
         pieces = new Piece[xDim, yDim];
 
-        FillFieldEmptyPieces();
+        //FillFieldEmptyPieces();
         FillFieldColorPieces();
         SetRequiredPieces();
     }
-
+    /*
     private void FillFieldEmptyPieces()
     {
         for (int x = 0; x < xDim; x++)
@@ -78,7 +78,7 @@ public class PieceMatrixController : MonoBehaviour,
             }
         }
     }
-
+    */
     private void SetRequiredPieces()
     {
         foreach (var piece in specifierRequiredPieces.RequiredPieces)
@@ -155,8 +155,23 @@ public class PieceMatrixController : MonoBehaviour,
 
     private void FillFieldColorPieces()
     {
+
+        for (int x = 0; x < xDim; x++)
+        {
+            for (int y = 0; y < yDim; y++)
+            {
+                if (field.IsTileNotEmpty(x, y, TilemapsType.Field))
+                {
+                    SpawnNewPiece(x, y, PieceType.Normal);
+                }
+                else
+                    pieces[x, y] = null;
+            }
+        }
+        /*
         foreach (Piece piece in pieces)
         {
+
             if (piece != null)
             {
                 if (piece.Type == PieceType.Empty)
@@ -167,6 +182,7 @@ public class PieceMatrixController : MonoBehaviour,
                 }
             }
         }
+        */
     }
 
     public Piece SpawnNewPiece(int x, int y, PieceType type)

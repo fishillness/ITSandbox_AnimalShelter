@@ -11,6 +11,7 @@ public class GlobalGameDependenciesContainer : Dependency
     [SerializeField] private MissionController missionController;
     [SerializeField] private MusicPlayer musicPlayer;
     [SerializeField] private SoundsPlayer soundsPlayer;
+    [SerializeField] private GarbageCollector garbageCollector;
 
     public static GlobalGameDependenciesContainer Instance => instance;
 
@@ -46,6 +47,7 @@ public class GlobalGameDependenciesContainer : Dependency
         Bind<MissionController>(missionController, monoBehaviourInScene);
         Bind<MusicPlayer>(musicPlayer, monoBehaviourInScene);
         Bind<SoundsPlayer>(soundsPlayer, monoBehaviourInScene);
+        Bind<GarbageCollector>(garbageCollector, monoBehaviourInScene);
     }
 
     public void Rebind(MonoBehaviour monoBehaviour)

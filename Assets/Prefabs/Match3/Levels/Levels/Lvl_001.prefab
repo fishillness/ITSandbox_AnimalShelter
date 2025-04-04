@@ -1860,7 +1860,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31fd524d5529bfa4ba5821376d1c9c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredBoosters: []
+  requiredBoosters:
+  - type: 4
+    position: {x: 0, y: 0}
 --- !u!1 &6030681723435542599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,12 +2225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceCounter: {fileID: 701359508474263491}
-  pieceColorDictionary: {fileID: 2015406732670101590}
-  boosterDictionary: {fileID: 3188200093556116247}
-  tilemapsDictionary: {fileID: 7301826846277077580}
-  piecesDictionary: {fileID: 1094058045525188592}
-  specifierRequiredPiecesOfType: {fileID: 2076636425934890783}
-  specifierRequiredBooster: {fileID: 7819778216446777906}
   levelPanel: {fileID: 7580491339464841890}
   taskInfoCounter: {fileID: 2185702956237337924}
   matrixController: {fileID: 829075401377072045}
@@ -2237,6 +2233,12 @@ MonoBehaviour:
   fieldController: {fileID: 6379823829506017523}
   pieceControl: {fileID: 3237871013122704741}
   endLevelPanel: {fileID: 1679953449011523560}
+  pieceColorDictionary: {fileID: 2015406732670101590}
+  boosterDictionary: {fileID: 3188200093556116247}
+  tilemapsDictionary: {fileID: 7301826846277077580}
+  piecesDictionary: {fileID: 1094058045525188592}
+  specifierRequiredPiecesOfType: {fileID: 2076636425934890783}
+  specifierRequiredBooster: {fileID: 7819778216446777906}
 --- !u!1 &8943783366864810765
 GameObject:
   m_ObjectHideFlags: 0
