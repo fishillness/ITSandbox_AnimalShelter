@@ -3,8 +3,12 @@ using UnityEngine;
 public class Match3SceneDependencies : Dependency
 {
     [SerializeField] private PieceCounter pieceCounter;
+
     [SerializeField] private PieceColorDictionary pieceColorDictionary;
     [SerializeField] private BoosterDictionary boosterDictionary;
+    [SerializeField] private TilemapsDictionary tilemapsDictionary;
+    [SerializeField] private PiecesDictionary piecesDictionary;
+
     [SerializeField] private SpecifierRequiredPiecesOfType specifierRequiredPiecesOfType;
     [SerializeField] private SpecifierRequiredBooster specifierRequiredBooster;
     [SerializeField] private UIMatch3LevelPanel levelPanel;
@@ -26,8 +30,11 @@ public class Match3SceneDependencies : Dependency
     protected override void BindAll(MonoBehaviour monoBehaviourInScene)
     {
         Bind<PieceCounter>(pieceCounter, monoBehaviourInScene);
+
         Bind<PieceColorDictionary>(pieceColorDictionary, monoBehaviourInScene);
         Bind<BoosterDictionary>(boosterDictionary, monoBehaviourInScene);
+        Bind<TilemapsDictionary>(tilemapsDictionary, monoBehaviourInScene);
+        Bind<PiecesDictionary>(piecesDictionary, monoBehaviourInScene);
 
         Bind<SpecifierRequiredPiecesOfType>(specifierRequiredPiecesOfType, monoBehaviourInScene);
         Bind<SpecifierRequiredBooster>(specifierRequiredBooster, monoBehaviourInScene);

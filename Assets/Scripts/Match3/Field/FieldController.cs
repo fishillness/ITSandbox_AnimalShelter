@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class FieldController : WorkingWithGrid,
     IDependency<PiecesSpawnerController>, IDependency<PieceCounter>,
-    IDependency<Match3Level>, IDependency<PieceMatrixController>
+    IDependency<Match3Level>, IDependency<PieceMatrixController>,
+    IDependency<PiecesDictionary>
 {
     [HideInInspector] 
     public UnityEvent OnMove;
     [HideInInspector]
     public UnityEvent OnDropEnd;
 
-    [SerializeField] private PiecesDictionary piecesDict;
     [SerializeField] private float droppingTime;
     [SerializeField] private float movingTime;
 
@@ -20,12 +20,14 @@ public class FieldController : WorkingWithGrid,
     private PieceCounter pieceCounter; //
     private Match3Level level;
     private PieceMatrixController matrixController;
+    private PiecesDictionary piecesDict;
 
     #region Constructs
     public void Construct(PiecesSpawnerController spawnerController) => this.spawnerController = spawnerController;
     public void Construct(PieceCounter pieceCounter) => this.pieceCounter = pieceCounter;
     public void Construct(Match3Level level) => this.level = level;
     public void Construct(PieceMatrixController matrixController) => this.matrixController = matrixController;
+    public void Construct(PiecesDictionary piecesDict) => this.piecesDict = piecesDict;
     #endregion
 
     public struct MatchingPieces

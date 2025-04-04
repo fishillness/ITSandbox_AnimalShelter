@@ -484,14 +484,12 @@ MonoBehaviour:
   boundsElement:
   - {fileID: 3597042599056598517}
   - {fileID: 71272496138330508}
-  tilemapsDict: {fileID: 7301826846277077580}
   OnMove:
     m_PersistentCalls:
       m_Calls: []
   OnDropEnd:
     m_PersistentCalls:
       m_Calls: []
-  piecesDict: {fileID: 1094058045525188592}
   droppingTime: 0.06
   movingTime: 0.15
 --- !u!1 &3331796232436578083
@@ -1725,7 +1723,6 @@ MonoBehaviour:
   boundsElement:
   - {fileID: 3597042599056598517}
   - {fileID: 71272496138330508}
-  tilemapsDict: {fileID: 7301826846277077580}
   spawnerPrefab: {fileID: 8406461318224951459, guid: e2ce7c92ac0258b459466a4ac03b04c5, type: 3}
 --- !u!1 &5021204313807366299
 GameObject:
@@ -2228,6 +2225,8 @@ MonoBehaviour:
   pieceCounter: {fileID: 701359508474263491}
   pieceColorDictionary: {fileID: 2015406732670101590}
   boosterDictionary: {fileID: 3188200093556116247}
+  tilemapsDictionary: {fileID: 7301826846277077580}
+  piecesDictionary: {fileID: 1094058045525188592}
   specifierRequiredPiecesOfType: {fileID: 2076636425934890783}
   specifierRequiredBooster: {fileID: 7819778216446777906}
   levelPanel: {fileID: 7580491339464841890}

@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WorkingWithGrid : MonoBehaviour
+public class WorkingWithGrid : MonoBehaviour,
+    IDependency<TilemapsDictionary>
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Bound[] boundsElement;
-    [SerializeField] private TilemapsDictionary tilemapsDict;
 
     private BoundsInt bounds;
     protected int xDim;
     protected int yDim;
+    private TilemapsDictionary tilemapsDict;
+
+    #region Constructs
+    public void Construct(TilemapsDictionary tilemapsDict) => this.tilemapsDict = tilemapsDict;
+    #endregion
 
     protected void InitTilemapsGrid()
     {
