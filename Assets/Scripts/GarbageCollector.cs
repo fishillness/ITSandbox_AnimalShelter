@@ -32,6 +32,7 @@ public class GarbageCollector : MonoBehaviour
 
         garbageQueue.Enqueue(gameObject);
         gameObject.SetActive(false);
+        gameObject.transform.SetParent(transform);
 
         if (isEmpty && coroutine == null)
             coroutine = StartCoroutine(Delete());
@@ -43,7 +44,7 @@ public class GarbageCollector : MonoBehaviour
         foreach (var gameObject in gameObjects)
         {
             garbageQueue.Enqueue(gameObject);
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);gameObject.transform.SetParent(transform);
         }
         if (isEmpty && coroutine == null)
             coroutine = StartCoroutine(Delete());

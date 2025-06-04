@@ -52,7 +52,7 @@ public class DestructiblePiece : MonoBehaviour
     public void OnDestroyAnimationEnd()
     {
         OnPieceDestroy?.Invoke(piece);
-        Destroy(piece.gameObject);
+        //Destroy(piece.gameObject); 
     }
 
     public void DestroyImmediately()

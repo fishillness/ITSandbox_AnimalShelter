@@ -889,6 +889,7 @@ Transform:
   - {fileID: 3044733453422922391}
   - {fileID: 6905480452312015571}
   - {fileID: 5775199037858389456}
+  - {fileID: 5117627638006082317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1699417618827125691
@@ -909,6 +910,7 @@ MonoBehaviour:
   missionController: {fileID: 8537981163577477813}
   musicPlayer: {fileID: 2089414481245730652}
   soundsPlayer: {fileID: 3151742293860410356}
+  garbageCollector: {fileID: 4169631572854962715}
 --- !u!1 &3417621440548927631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1267,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4497238420969409547}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1461,6 +1463,51 @@ MonoBehaviour:
   missionController: {fileID: 8537981163577477813}
   dialogController: {fileID: 4668138797531594813}
   inputController: {fileID: 4252103863065722292}
+--- !u!1 &5860039290786352583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5117627638006082317}
+  - component: {fileID: 4169631572854962715}
+  m_Layer: 0
+  m_Name: GarbageCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5117627638006082317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860039290786352583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4073865124348802788}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4169631572854962715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860039290786352583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e4360f1ed70ae488dd8605710a2761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageCollectionInterval: 0.2
 --- !u!1 &6174487352701902440
 GameObject:
   m_ObjectHideFlags: 0
