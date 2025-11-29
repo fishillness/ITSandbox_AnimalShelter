@@ -15,8 +15,11 @@ public class Saver<T>
         //Debug.Log(path);
         if(File.Exists(path))
         {
-            string dataString = File.ReadAllText(path);
-            Saver<T> saver = JsonUtility.FromJson<Saver<T>>(dataString);
+            string encryptedDataString = File.ReadAllText(path);
+            (string key, string ivSecret) = ConfigurationManager.LoadEncryptionConfig();
+            string decryptedDataString = EncryptionManager.DecryptText(encryptedDataString, key, ivSecret);
+
+            Saver<T> saver = JsonUtility.FromJson<Saver<T>>(decryptedDataString);
             data = saver.data;
             return true;
         }
@@ -31,7 +34,11 @@ public class Saver<T>
         Saver<T> wrapper = new Saver<T>();
         wrapper.data = data;
         string dataString = JsonUtility.ToJson(wrapper);
-        File.WriteAllText(FileHandler.Path(filename), dataString);            
+
+        (string key, string ivSecret) = ConfigurationManager.LoadEncryptionConfig();
+        string encryptedDataString = EncryptionManager.EncryptText(dataString, key, ivSecret);
+
+        File.WriteAllText(FileHandler.Path(filename), encryptedDataString);            
     }
 
         
