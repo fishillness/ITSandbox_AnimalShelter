@@ -30,4 +30,7 @@ public class BuildingInfo : ScriptableObject
     [SerializeField] private int m_Cosiness;
     [SerializeField] private int m_Health;
     [SerializeField] private int m_Joy;
+
+    ////// Debug
+    public int BuildingID => m_Building.BuildingID;
 }   

@@ -12,8 +12,10 @@ public class Saver<T>
     public static bool TryLoad(string filename, ref T data)
     {
         string path = FileHandler.Path(filename);
-        //Debug.Log(path);
-        if(File.Exists(path))
+        Debug.Log(path);
+        ///ConfigurationManager.CreateSecretsConfigTemplate();
+
+        if (File.Exists(path))
         {
             string encryptedDataString = File.ReadAllText(path);
             (string key, string ivSecret) = ConfigurationManager.LoadEncryptionConfig();

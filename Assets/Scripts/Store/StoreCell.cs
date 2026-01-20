@@ -30,6 +30,9 @@ public class StoreCell : MonoBehaviour
 
     private bool interactable;
 
+    //DEBUG
+    [SerializeField] private TMP_Text buildingIDdebug;
+
     private void Start()
     {
         Initialize();
@@ -47,6 +50,11 @@ public class StoreCell : MonoBehaviour
         m_BoardsText.text = m_BuildingInfo.NeededBoards.ToString();
         m_BricksText.text = m_BuildingInfo.NeededBricks.ToString();
         m_NailsText.text = m_BuildingInfo.NeededNails.ToString();
+
+        if (buildingIDdebug != null)
+        {
+            buildingIDdebug.text = m_BuildingInfo.BuildingID.ToString();
+        }
     }
 
     public void CellUpdate(int coinsCount, int boardsCount, int bricksCount, int nailsCount)

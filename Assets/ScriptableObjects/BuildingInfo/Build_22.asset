@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c210c3ebc919a4ab77db4f2451f76d, type: 3}
+  m_Name: Build_22
+  m_EditorClassIdentifier: 
+  m_Building: {fileID: 7252172201135276214, guid: 33be7ce9739df574a8e8b68ec43fe8e1, type: 3}
+  m_StoreCellImage: {fileID: 21300000, guid: c9ef5768c56e81b4e8a64fa6e13d96ab, type: 3}
+  nameBuilding: -----
+  m_NeededCoins: 30
+  m_NeededBoards: 5
+  m_NeededBricks: 5
+  m_NeededNails: 5
+  m_Advancement: 5
+  m_Cosiness: 5
+  m_Health: 5
+  m_Joy: 5
