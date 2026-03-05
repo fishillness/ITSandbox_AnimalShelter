@@ -151,7 +151,7 @@ public class MissionController : MonoBehaviour,
         }
         else
         {
-            Debug.Log("Сохранений нет");
+            Debug.Log("Сохранений миссий нет");
         }
     }
 

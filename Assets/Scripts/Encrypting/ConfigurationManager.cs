@@ -9,20 +9,12 @@ public static class ConfigurationManager
 
     public static (string key, string iv) LoadEncryptionConfig()
     {
+        TextAsset json = Resources.Load<TextAsset>("appsettings.secrets"); 
+        if (json == null) 
+            throw new FileNotFoundException("appsettings.secrets.json not found in Resources"); 
 
-        string path = Path.Combine(Application.streamingAssetsPath, SecretsConfigFile);
-
-        if (File.Exists(path))
-        {
-            EncryptionSettings secretsConfig = LoadFromFile(path); 
-            
-            if (secretsConfig != null)
-            {
-                return (secretsConfig.Key, secretsConfig.IV);
-            }
-        }
-        
-        throw new FileNotFoundException($"File {SecretsConfigFile} not found");
+        EncryptionSettings settings = JsonUtility.FromJson<EncryptionSettings>(json.text); 
+        return (settings.Key, settings.IV);
     }
 
     public static void CreateSecretsConfigTemplate()

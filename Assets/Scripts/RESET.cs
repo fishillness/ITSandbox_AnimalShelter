@@ -12,5 +12,6 @@ public class RESET : MonoBehaviour
         FileHandler.Reset(SaverFilenames.PlotFilaname);
         FileHandler.Reset(SaverFilenames.MusicSettingsFilaname);
         FileHandler.Reset(SaverFilenames.SFXSettingsFilaname);
+        Debug.Log("All saves have been deleted.");
     }
 }
