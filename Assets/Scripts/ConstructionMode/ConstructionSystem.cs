@@ -27,10 +27,10 @@ public class ConstructionSystem : MonoBehaviour,
         m_PlacementSystem.BuildingPlacementEvent -= BuildingPlacement;
     }
 
-    private void StartConstruction(BuildingInfo buildingInfo)
+    private void StartConstruction(BuildingInfo buildingInfo, BuildingColor buildingColor)
     {
         m_ConstructionModeActivator.ConstructionModeActivate();
-        m_PlacementSystem.StartPlacement(buildingInfo.Building);
+        m_PlacementSystem.StartPlacement(buildingInfo.Building, buildingColor);
     }
     private void BuildingDelete(BuildingInfo buildingInfo)
     {

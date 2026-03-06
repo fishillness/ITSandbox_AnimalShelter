@@ -15,6 +15,9 @@ MonoBehaviour:
   m_Building: {fileID: 7252172201135276214, guid: b75f9c176e7c25f4a9e7bbad5cc764ff, type: 3}
   m_StoreCellImage: {fileID: 21300000, guid: a4db837815965be4e8859c434b7c6d27, type: 3}
   nameBuilding: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"
+  m_ColorSprites:
+  - Color: 0
+    Sprite: {fileID: 0}
   m_NeededCoins: 10
   m_NeededBoards: 15
   m_NeededBricks: 10

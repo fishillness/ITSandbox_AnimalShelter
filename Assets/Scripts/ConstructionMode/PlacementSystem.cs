@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
 using static PlacedBuildings;
@@ -48,8 +49,13 @@ public class PlacementSystem : MonoBehaviour
         {
             Building building = Instantiate(m_BuildingDataBase.GetBuilding(uploadedBuildingsInfo[i].BuildingID));
             building.BuildingPlacement(uploadedBuildingsInfo[i].OccupiedCell, m_PlacedBuildings.GetBuildIndex());
-            m_PlacedBuildings.AddBuilding(building);
+            m_PlacedBuildings.AddBuilding(building, uploadedBuildingsInfo[i].BuildingColor);
             building.transform.position = m_Grid.ConvertCellLocalPositionToCellWorldPosition(building.OccupiedCell);
+            BuildingColor color = uploadedBuildingsInfo[i].BuildingColor;
+            building.SetBuildingColor(color);
+            Sprite sprite = m_BuildingDataBase.GetBuildingInfo(building.BuildingID)
+                                    .ColorSprites.Find(x => x.Color == color).Sprite;
+            building.SetBuildingSprite(sprite);
             for (int x = 0; x < building.Size.x; x++)
             {
                 for (int y = 0; y < building.Size.y; y++)
@@ -111,7 +117,7 @@ public class PlacementSystem : MonoBehaviour
         EnablingPlacement();
     }
 
-    public void StartPlacement(Building building)
+    public void StartPlacement(Building building, BuildingColor color)
     {
         placemenSystemMode = PlacemenSystemMode.Placement;
 
@@ -121,6 +127,10 @@ public class PlacementSystem : MonoBehaviour
         }
 
         currentBuilding = Instantiate(building);
+        currentBuilding.SetBuildingColor(color);
+        Sprite sprite = m_BuildingDataBase.GetBuildingInfo(currentBuilding.BuildingID)
+                                    .ColorSprites.Find(x => x.Color == color).Sprite;
+        currentBuilding.SetBuildingSprite(sprite);
         currentBuilding.transform.position = m_Indicator.transform.position;
         m_Indicator.IndicatorVisualization(false);
         m_ConstructionModeUI.StartPlacement();
@@ -143,7 +153,7 @@ public class PlacementSystem : MonoBehaviour
     {        
         int buildIndex = m_PlacedBuildings.GetBuildIndex();
         currentBuilding.BuildingPlacement(currentCellLocalPosition, buildIndex);
-        m_PlacedBuildings.AddBuilding(currentBuilding);
+        m_PlacedBuildings.AddBuilding(currentBuilding,  currentBuilding.BuildingColor);
         for (int x = 0; x < currentBuilding.Size.x; x++)
         {
             for (int y = 0; y < currentBuilding.Size.y; y++)

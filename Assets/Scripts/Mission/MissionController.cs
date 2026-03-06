@@ -364,7 +364,7 @@ public class MissionController : MonoBehaviour,
         } 
     }
 
-    private void OnBuyBuilding(BuildingInfo buildingInfo)
+    private void OnBuyBuilding(BuildingInfo buildingInfo, BuildingColor buildingColor)
     {
         foreach (Mission mission in currentMissions)
         {

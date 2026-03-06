@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,13 +6,15 @@ using UnityEngine.UI;
 
 public class StoreCell : MonoBehaviour
 {
-    public event UnityAction<BuildingInfo> BuyEvent;
+    public event UnityAction<BuildingInfo, BuildingColor> BuyEvent;
 
     [SerializeField] private Store m_Store;
     [SerializeField] private BuildingInfo m_BuildingInfo;
 
     [SerializeField] private Image m_CellImage;
     [SerializeField] private UIButton m_CellButton;
+    [SerializeField] private UIButton m_LeftButton;
+    [SerializeField] private UIButton m_RightButton;
 
     [SerializeField] private Image m_CoinsImage;
     [SerializeField] private Image m_BoardsImage;
@@ -29,6 +32,8 @@ public class StoreCell : MonoBehaviour
     [SerializeField] private Color m_TheColorOfResourceShortage;
 
     private bool interactable;
+    private ColorSpritePair[] m_ColorSprites;
+    private int m_CurrentColorIndex = 0;
 
     //DEBUG
     [SerializeField] private TMP_Text buildingIDdebug;
@@ -36,20 +41,29 @@ public class StoreCell : MonoBehaviour
     private void Start()
     {
         Initialize();
+        m_LeftButton.OnClick.AddListener(ClickLeftButton);
+        m_RightButton.OnClick.AddListener(ClickRightButton);
+    }
+
+    private void OnDestroy()
+    {
+        m_LeftButton.OnClick.RemoveListener(ClickLeftButton);
+        m_RightButton.OnClick.RemoveListener(ClickRightButton);
     }
 
     private void Initialize()
-    {
-        if (m_BuildingInfo.StoreCellImage != null)
-        {
-            m_CellImage.sprite = m_BuildingInfo.StoreCellImage;
-        }
-        
+    {  
         m_name.text = m_BuildingInfo.Name;
         m_CoinsText.text = m_BuildingInfo.NeededCoins.ToString();
         m_BoardsText.text = m_BuildingInfo.NeededBoards.ToString();
         m_BricksText.text = m_BuildingInfo.NeededBricks.ToString();
         m_NailsText.text = m_BuildingInfo.NeededNails.ToString();
+        List<ColorSpritePair> colorSprites = new List<ColorSpritePair>(m_BuildingInfo.ColorSprites);
+        colorSprites.RemoveAll(x => x.Color == BuildingColor.None);
+        m_ColorSprites =  colorSprites.ToArray();
+        m_CellImage.sprite = m_ColorSprites[m_CurrentColorIndex].Sprite;
+        m_LeftButton.Disabled();
+        m_RightButton.Enabled();
 
         if (buildingIDdebug != null)
         {
@@ -132,6 +146,33 @@ public class StoreCell : MonoBehaviour
     public void Buy()
     {
         if (m_BuildingInfo == null) return;
-        BuyEvent?.Invoke(m_BuildingInfo);
+
+        BuyEvent?.Invoke(m_BuildingInfo, m_ColorSprites[m_CurrentColorIndex].Color);
+    }
+
+    private void ClickLeftButton()
+    {
+        if (m_CurrentColorIndex <= 0) return;
+
+        m_CurrentColorIndex--;
+        m_CellImage.sprite = m_ColorSprites[m_CurrentColorIndex].Sprite;
+
+        if (m_CurrentColorIndex <= 0)
+            m_LeftButton.Disabled();
+        if  (m_CurrentColorIndex < m_ColorSprites.Length - 1)
+            m_RightButton.Enabled();
+    }
+
+    private void ClickRightButton()
+    {
+        if (m_CurrentColorIndex >= m_ColorSprites.Length - 1) return;
+
+        m_CurrentColorIndex++;
+        m_CellImage.sprite = m_ColorSprites[m_CurrentColorIndex].Sprite;
+
+        if (m_CurrentColorIndex >= m_ColorSprites.Length - 1)
+            m_RightButton.Disabled();
+        if (m_CurrentColorIndex > 0)
+            m_LeftButton.Enabled();
     }
 }

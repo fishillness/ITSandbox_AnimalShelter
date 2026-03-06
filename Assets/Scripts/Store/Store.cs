@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class Store : MonoBehaviour,
     IDependency<ValueManager>
 {   
-    public event UnityAction<BuildingInfo> BuyEvent;
+    public event UnityAction<BuildingInfo, BuildingColor> BuyEvent;
 
     [SerializeField] [Range(0, 1)] private float m_RefundPercentage;
     [SerializeField] private StoreCell[] m_Cells;
@@ -32,9 +32,9 @@ public class Store : MonoBehaviour,
         }
     }
 
-    public void TryBuy(BuildingInfo buildingInfo)
+    public void TryBuy(BuildingInfo buildingInfo, BuildingColor buildingColor)
     {
-        BuyEvent?.Invoke(buildingInfo);
+        BuyEvent?.Invoke(buildingInfo, buildingColor);
     }
 
     public void Buy(BuildingInfo buildingInfo)

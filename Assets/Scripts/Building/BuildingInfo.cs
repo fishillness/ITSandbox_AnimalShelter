@@ -1,11 +1,12 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class BuildingInfo : ScriptableObject
 {
     public Building Building => m_Building;
-    public Sprite StoreCellImage => m_StoreCellImage;
     public string Name => nameBuilding;
+    public List<ColorSpritePair> ColorSprites => m_ColorSprites;
     public int NeededBoards => m_NeededBoards;
     public int NeededCoins => m_NeededCoins;
     public int NeededNails => m_NeededNails;
@@ -16,8 +17,10 @@ public class BuildingInfo : ScriptableObject
     public int Joy => m_Joy;
 
     [SerializeField] private Building m_Building;
-    [SerializeField] private Sprite m_StoreCellImage;
     [SerializeField] private string nameBuilding;
+
+    [Header("Color - Sprite")]
+    [SerializeField] private List<ColorSpritePair> m_ColorSprites;
 
     [Header("Needed Resources")]
     [SerializeField] private int m_NeededCoins;
@@ -33,4 +36,4 @@ public class BuildingInfo : ScriptableObject
 
     ////// Debug
     public int BuildingID => m_Building.BuildingID;
-}   
+}

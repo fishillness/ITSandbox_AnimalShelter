@@ -11,16 +11,17 @@ public class PlacedBuildings : MonoBehaviour
         public Vector2 OccupiedCell;
         public int BuildingID;
         public int BuildingIndex;
+        public BuildingColor BuildingColor;
     }
 
     private List<Building> buildings = new List<Building>();
     private List<BuildingData> buildingsData = new List<BuildingData>();
     private List<Building> buildingsWithAnEntry = new List<Building>();
     private int buildingIndex;
-    public void AddBuilding(Building building)
+    public void AddBuilding(Building building, BuildingColor buildingColor)
     {
         buildings.Add(building);
-        AddBuildingInfo(building);               
+        AddBuildingInfo(building, buildingColor);               
     }
 
     public int GetBuildIndex()
@@ -28,13 +29,14 @@ public class PlacedBuildings : MonoBehaviour
         buildingIndex++;
         return buildingIndex;
     }
-
-    private void AddBuildingInfo(Building building)
+    
+    private void AddBuildingInfo(Building building, BuildingColor buildingColor)
     {        
         BuildingData buildingInfo = new BuildingData();
         buildingInfo.OccupiedCell = building.OccupiedCell;
         buildingInfo.BuildingID = building.BuildingID;
         buildingInfo.BuildingIndex = building.BuildingIndex;
+        buildingInfo.BuildingColor = buildingColor;
         buildingsData.Add(buildingInfo);
 
         Saver<List<BuildingData>>.Save(SaverFilenames.PlacedBuilddingsFilaname, buildingsData);
@@ -103,9 +105,6 @@ public class PlacedBuildings : MonoBehaviour
         else
         {
             return null;
-        }           
-        
-    }
-
-    
+        }          
+    }    
 }

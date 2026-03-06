@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Build_10
   m_EditorClassIdentifier: 
   m_Building: {fileID: 7252172201135276214, guid: ba3d0a0b25a2f7d45b38628cf1f6fcf1, type: 3}
-  m_StoreCellImage: {fileID: 21300000, guid: 826e8976f0a6989429c1a1b637571fe5, type: 3}
   nameBuilding: -----
+  m_ColorSprites:
+  - Color: 1
+    Sprite: {fileID: 2120465949, guid: 2be6baf53b1639c43a8a4b101a70e63e, type: 3}
+  - Color: 2
+    Sprite: {fileID: 1072987127, guid: 2be6baf53b1639c43a8a4b101a70e63e, type: 3}
   m_NeededCoins: 30
   m_NeededBoards: 5
   m_NeededBricks: 5
